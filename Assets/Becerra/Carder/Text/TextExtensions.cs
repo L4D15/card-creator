@@ -29,6 +29,13 @@ namespace Becerra.Carder.Text
             result = ApplyOneToTwoAction(result);
             result = ApplyOneToThreeAction(result);
             result = ApplyTwoToThreeAction(result);
+            result = ApplyCriticalSuccess(result);
+            result = ApplySuccess(result);
+            result = ApplyMiss(result);
+            result = ApplyCriticalMiss(result);
+            result = Applyd20(result);
+            result = Applyd4(result);
+            result = ApplyPowerUp(result);
 
             return result;
         }
@@ -117,6 +124,41 @@ namespace Becerra.Carder.Text
         private static string ApplyTwoToThreeAction(string text)
         {
             return text.Replace("{2-3}", "<sprite=4>");
+        }
+
+        private static string ApplyCriticalSuccess(string text)
+        {
+            return text.Replace("{critical_success}", "<sprite=8>");
+        }
+
+        private static string ApplySuccess(string text)
+        {
+            return text.Replace("{success}", "<sprite=9>");
+        }
+
+        private static string ApplyMiss(string text)
+        {
+            return text.Replace("{miss}", "<sprite=10>");
+        }
+
+        private static string ApplyCriticalMiss(string text)
+        {
+            return text.Replace("{critical_miss}", "<sprite=12>");
+        }
+
+        private static string Applyd20(string text)
+        {
+            return text.Replace("{d20}", "<sprite=13>");
+        }
+
+        private static string Applyd4(string text)
+        {
+            return text.Replace("{d4}", "<sprite=14>");
+        }
+
+        private static string ApplyPowerUp(string text)
+        {
+            return text.Replace("{power-up}", "<sprite=15>");
         }
     }
 }

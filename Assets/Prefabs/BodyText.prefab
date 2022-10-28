@@ -67,10 +67,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem ipsum <sprite=0>dolor sit <sprite=3> amet, <sprite=2> adipiscing
+  m_text: "Lorem ipsum <sprite=0>dolor sit <sprite=3> amet, <sprite=2> adipiscing
     elit. Maecenas <sprite=4> consectetur, <sprite=5> <b>urna</b> sed semper <sprite=1>
     venenatis, est ipsum viverra sapien, <i>et semper</i> eros nunc in dui. Nulla
-    vestibulum mauris a laoreet.
+    vestibulum mauris a laoreet.\n<sprite=8> \xC9xito cr\xEDtico <sprite=8>\n<sprite=9>
+    \xC9xito <sprite=9>\n<sprite=10> Fallo <sprite=10>\n<sprite=12> Fallo cr\xEDtico
+    <sprite=12>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac3ba2c19cf076d4b9817c49ad626002, type: 2}
   m_sharedMaterial: {fileID: 2778271914135062357, guid: ac3ba2c19cf076d4b9817c49ad626002,
