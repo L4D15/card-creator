@@ -197,10 +197,7 @@ namespace Becerra.Carder
                     }
                     case "Level":
                     {
-                        if (int.TryParse(value, out model.level) == false)
-                        {
-                            model.level = CardModel.NO_LEVEL;
-                        }
+                        model.level = value;
                         break;
                     }
                 }

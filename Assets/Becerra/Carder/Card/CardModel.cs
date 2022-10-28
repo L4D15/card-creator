@@ -15,14 +15,14 @@ namespace Becerra.Carder
         public string frontImage;
         public string backImage;
         public string source;
-        public int level;
+        public string level;
         
         public CardModel()
         {
             this.sections = new List<CardSection>();
             this.categories = new List<string>();
             this.tags = new List<string>();
-            this.level = NO_LEVEL;
+            this.level = string.Empty;
         }
     }
 }

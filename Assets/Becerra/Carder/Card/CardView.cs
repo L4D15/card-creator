@@ -14,6 +14,8 @@ namespace Becerra.Carder
         //public const int WIDTH = 744;
         //public const int HEIGHT = 1039;
 
+        public bool colorizeBold = false;
+
         [TabGroup("Categories")]
         public CategoriesSettings _categoriesSettings;
 
@@ -140,9 +142,9 @@ namespace Becerra.Carder
             backNameLabel.text = name.ToRichText();
         }
 
-        private void ShowLevel(int level)
+        private void ShowLevel(string level)
         {
-            if (level == CardModel.NO_LEVEL)
+            if (string.IsNullOrEmpty(level))
             {
                 levelArea.SetActive(false);
                 levelLabel.text = string.Empty;
@@ -268,7 +270,11 @@ namespace Becerra.Carder
                     var view = textSectionPool.Spawn();
                     
                     view.ShowText(textSection.BodyText);
-                    view.ApplyColorToBold(color);
+
+                    if (colorizeBold)
+                    {
+                        view.ApplyColorToBold(color);
+                    }
                 }
                 else if (section is CardSectionSeparator separatorSection)
                 {

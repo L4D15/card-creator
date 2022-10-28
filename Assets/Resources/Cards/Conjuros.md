@@ -3,7 +3,7 @@
 Categories: Conjuro
 Source: Empty inside
 Tags: Truco, Foco, Abjuración
-Level: 0
+Level: Truco
 
 __Conjurar__ {1} verbal
 
@@ -35,7 +35,7 @@ __Potenciado (+1)__ Daño +1d4.
 Categories: Conjuro
 Source: Telekinetic Projectile
 Tags: Ataque, Truco, Evocación
-Level: 0
+Level: Truco
 
 __Conjurar__ {2} somático, verbal
 __Rango__ 30 pies; __Objetivos__ 1 criatura
