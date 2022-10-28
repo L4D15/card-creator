@@ -14,7 +14,7 @@ public class Main : MonoBehaviour
     private CardParser parser;
     private SaveService saveService;
     private CaptureService captureService;
-    private TextAsset[] dataFiles;
+    private string[] directories;
     private List<PageView> pages;
 
     public void Awake()
@@ -29,7 +29,13 @@ public class Main : MonoBehaviour
         
         cardView.Initialize();
 
-        dataFiles = Resources.LoadAll<TextAsset>("Cards");
+        string basePath = System.IO.Path.Combine(Application.dataPath, "Resources", "Cards");
+        directories = System.IO.Directory.GetDirectories(basePath);
+
+        Debug.Log($"Path: {basePath}");
+        Debug.Log($"Folders: {directories.Length}");
+
+        // dataFiles = Resources.LoadAll<TextAsset>("Cards");
 
         StartCapture();
     }
@@ -43,41 +49,53 @@ public class Main : MonoBehaviour
     {
         pages.Clear();
 
-        foreach (var dataFile in dataFiles)
+        foreach (var directory in directories)
         {
-            string text = dataFile.text;
-            string folder = dataFile.name;
+            string basePath = System.IO.Path.Combine(Application.dataPath, "Resources");
+            string relativePath = directory.Replace(basePath, "").Remove(0, 1);
+            var parts = directory.Split(System.IO.Path.DirectorySeparatorChar);
+            var folderName = parts[parts.Length - 1];
 
-            saveService.PrepareFolder(folder);
+            var dataFiles = Resources.LoadAll<TextAsset>(relativePath);
+
             CreateNewPage();
 
-            var cards = parser.SplitIntoSeparateCards(text);
+            Debug.Log($"Loading files from path {relativePath}. Found {dataFiles.Length} files.");
 
-            foreach (var card in cards)
+            foreach (var dataFile in dataFiles)
             {
-                HideCard(cardView);
-                ShowCard(card);
+                string text = dataFile.text;
 
-                var front = await captureService.CaptureCardFront(cardView);
-                var back = await captureService.CaptureCardBack(cardView);
+                saveService.PrepareFolder(folderName);
 
-                saveService.SaveTexture(front, folder);
-                saveService.SaveTexture(back, folder);
+                var cards = parser.SplitIntoSeparateCards(text);
 
-                if (IsCurrentPageFull())
+                foreach (var card in cards)
                 {
-                    await SaveCurrentPage(folder);
+                    HideCard(cardView);
+                    ShowCard(card);
 
-                    CreateNewPage();
+                    var front = await captureService.CaptureCardFront(cardView);
+                    var back = await captureService.CaptureCardBack(cardView);
+
+                    saveService.SaveTexture(front, folderName);
+                    saveService.SaveTexture(back, folderName);
+
+                    if (IsCurrentPageFull())
+                    {
+                        await SaveCurrentPage(folderName);
+
+                        CreateNewPage();
+                    }
+
+                    AddToCurrentPage(front, back);
                 }
-
-                AddToCurrentPage(front, back);
             }
 
             // If page was not full, save as it is
             if (IsCurrentPageFull() == false)
             {
-                await SaveCurrentPage(folder);
+                await SaveCurrentPage(folderName);
             }
         }
 
