@@ -164,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardParent: {fileID: 1472110237}
   cardView: {fileID: 797988336}
-  cardsPath: "C:\\Users\\thedr\\iCloudDrive\\Rol\\Pathfinder 2E\\Cartas\\Definici\xF3n"
+  cardsPath: C:\Users\thedr\iCloudDrive\Rol\Cartas\PF2
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -233,7 +233,7 @@ PrefabInstance:
     - target: {fileID: 516548358063707551, guid: 207949f43530c8e488f61d0ca2d915ae,
         type: 3}
       propertyPath: _imagesPath
-      value: C:\Users\thedr\iCloudDrive\Rol\Pathfinder 2E\Cartas\Imagenes
+      value: C:\Users\thedr\iCloudDrive\Rol\Cartas\PF2\Imagenes
       objectReference: {fileID: 0}
     - target: {fileID: 782397397859571330, guid: 207949f43530c8e488f61d0ca2d915ae,
         type: 3}

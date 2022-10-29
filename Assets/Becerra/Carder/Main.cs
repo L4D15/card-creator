@@ -24,8 +24,7 @@ public class Main : MonoBehaviour
 
     public void Awake()
     {
-        var pathToDesktop = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
-        var outputPath = System.IO.Path.Combine(pathToDesktop, "Cards");
+        var outputPath = System.IO.Path.Combine(cardsPath, "Output");
 
         _textProvider = new TextFileProvider();
         parser = new CardParser();

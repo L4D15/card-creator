@@ -74,7 +74,7 @@ namespace Becerra.Carder.Page
                 texture.SetPixels32(x, y, width, height, pixels);
             }
 
-            texture.name = $"Page {Index + 1} (Front)";
+            texture.name = $"_Page {Index + 1} (Front)";
             texture.Apply();
 
             return texture;
@@ -94,7 +94,7 @@ namespace Becerra.Carder.Page
                 texture.SetPixels32((int)position.x, (int)position.y, card.front.width, card.front.height, pixels);
             }
 
-            texture.name = $"Page {Index + 1} (Back)";
+            texture.name = $"_Page {Index + 1} (Back)";
             texture.Apply();
 
             return texture;
