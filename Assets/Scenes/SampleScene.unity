@@ -164,6 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardParent: {fileID: 1472110237}
   cardView: {fileID: 797988336}
+  cardsPath: "C:\\Users\\thedr\\iCloudDrive\\Rol\\Pathfinder 2E\\Cartas\\Definici\xF3n"
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -977,7 +978,7 @@ PrefabInstance:
     - target: {fileID: 4461474542668563513, guid: 207949f43530c8e488f61d0ca2d915ae,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 226.51
       objectReference: {fileID: 0}
     - target: {fileID: 4461474542697290211, guid: 207949f43530c8e488f61d0ca2d915ae,
         type: 3}
@@ -1172,7 +1173,7 @@ PrefabInstance:
     - target: {fileID: 6197625278499112105, guid: 207949f43530c8e488f61d0ca2d915ae,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 338.065
       objectReference: {fileID: 0}
     - target: {fileID: 6197625278499112105, guid: 207949f43530c8e488f61d0ca2d915ae,
         type: 3}
@@ -1527,7 +1528,7 @@ PrefabInstance:
     - target: {fileID: 8302843103048920191, guid: 207949f43530c8e488f61d0ca2d915ae,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 66.89
       objectReference: {fileID: 0}
     - target: {fileID: 8302843103048920191, guid: 207949f43530c8e488f61d0ca2d915ae,
         type: 3}

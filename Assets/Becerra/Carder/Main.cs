@@ -1,9 +1,10 @@
 ﻿using Becerra.Carder;
 using Becerra.Carder.Capture;
 using Becerra.Carder.Page;
+using Becerra.Carder.Provider;
 using Becerra.Save;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -11,11 +12,14 @@ public class Main : MonoBehaviour
 {
     public RectTransform cardParent;
     public CardView cardView;
+    public string cardsPath;
+
+    private TextFileProvider _textProvider;
 
     private CardParser parser;
     private SaveService saveService;
     private CaptureService captureService;
-    private string[] directories;
+    private IEnumerable<string> folderPaths;
     private List<PageView> pages;
 
     public void Awake()
@@ -23,22 +27,38 @@ public class Main : MonoBehaviour
         var pathToDesktop = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
         var outputPath = System.IO.Path.Combine(pathToDesktop, "Cards");
 
+        _textProvider = new TextFileProvider();
         parser = new CardParser();
         saveService = new SaveService(outputPath);
         captureService = new CaptureService();
         pages = new List<PageView>();
-        
+
         cardView.Initialize();
 
-        string basePath = System.IO.Path.Combine(Application.dataPath, "Resources", "Cards");
-        directories = System.IO.Directory.GetDirectories(basePath);
+        folderPaths = GetFolderPaths(cardsPath);
 
-        Debug.Log($"Path: {basePath}");
-        Debug.Log($"Folders: {directories.Length}");
-
-        // dataFiles = Resources.LoadAll<TextAsset>("Cards");
+        Debug.Log($"Path: {cardsPath}");
+        Debug.Log($"Folders found: {folderPaths.Count()}");
 
         StartCapture();
+    }
+
+    private IEnumerable<string> GetFolderPaths(string path)
+    {
+        return System.IO.Directory.GetDirectories(path);
+    }
+
+    private IEnumerable<string> GetFilesInsideFolder(string folderPath)
+    {
+        return System.IO.Directory.GetFiles(folderPath, "*.md");
+    }
+
+    private string GetFolderName(string folderPath)
+    {
+        var parts = folderPath.Split(System.IO.Path.DirectorySeparatorChar);
+        var folderName = parts[parts.Length - 1];
+
+        return folderName;
     }
 
     public void StartCapture()
@@ -50,22 +70,18 @@ public class Main : MonoBehaviour
     {
         pages.Clear();
 
-        foreach (var directory in directories)
+        foreach (var folderPath in folderPaths)
         {
-            string basePath = System.IO.Path.Combine(Application.dataPath, "Resources");
-            string relativePath = directory.Replace(basePath, "").Remove(0, 1);
-            var parts = directory.Split(System.IO.Path.DirectorySeparatorChar);
-            var folderName = parts[parts.Length - 1];
-
-            var dataFiles = Resources.LoadAll<TextAsset>(relativePath);
+            var folderName = GetFolderName(folderPath);
+            var filesInFolder = GetFilesInsideFolder(folderPath);
 
             CreateNewPage();
 
-            Debug.Log($"Loading files from path {relativePath}. Found {dataFiles.Length} files.");
+            Debug.Log($"Loading files from path {folderPath}. Found {filesInFolder.Count()} files.");
 
-            foreach (var dataFile in dataFiles)
+            foreach (var filePath in filesInFolder)
             {
-                string text = dataFile.text;
+                string text = await _textProvider.LoadText(filePath);
 
                 saveService.PrepareFolder(folderName);
 
@@ -162,9 +178,9 @@ public class Main : MonoBehaviour
     private async Task ShowCard(string cardText)
     {
         CardController card = new CardController(cardText);
-        
+
         card.Parse(parser);
-        
+
         await cardView.Show(card.model);
     }
 
