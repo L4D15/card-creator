@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Becerra.Carder.Card;
 
 namespace Becerra.Carder.Text
 {
@@ -19,25 +20,9 @@ namespace Becerra.Carder.Text
 
         public static string ApplyEmojis(this string text)
         {
-            string result = text;
+            text = Icons.ApplyIcons(text);
 
-            result = ApplyFreeAction(result);
-            result = ApplyOneAction(result);
-            result = ApplyTwoAction(result);
-            result = ApplyThreeAction(result);
-            result = ApplyReactionAction(result);
-            result = ApplyOneToTwoAction(result);
-            result = ApplyOneToThreeAction(result);
-            result = ApplyTwoToThreeAction(result);
-            result = ApplyCriticalSuccess(result);
-            result = ApplySuccess(result);
-            result = ApplyMiss(result);
-            result = ApplyCriticalMiss(result);
-            result = Applyd20(result);
-            result = Applyd4(result);
-            result = ApplyPowerUp(result);
-
-            return result;
+            return text;
         }
 
         private static string ConvertBold(string sourceText)

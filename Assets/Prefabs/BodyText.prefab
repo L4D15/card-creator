@@ -67,12 +67,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Lorem ipsum <sprite=0>dolor sit <sprite=3> amet, <sprite=2> adipiscing
-    elit. Maecenas <sprite=4> consectetur, <sprite=5> <b>urna</b> sed semper <sprite=1>
-    venenatis, est ipsum viverra sapien, <i>et semper</i> eros nunc in dui. Nulla
-    vestibulum mauris a laoreet.\n<sprite=8> \xC9xito cr\xEDtico <sprite=8>\n<sprite=9>
-    \xC9xito <sprite=9>\n<sprite=10> Fallo <sprite=10>\n<sprite=12> Fallo cr\xEDtico
-    <sprite=12>"
+  m_text: 'Lorem ipsum <sprite=0>dolor sit <sprite=3> amet, <sprite=2> adipiscing
+    elit.
+
+
+    asdf <sprite=0> asdf <sprite=1> asdf  <sprite=2> asdf <sprite=3>
+    asdf <sprite=4> asdf <sprite=5> asdf <sprite=6> asdf <sprite=7> asdf <sprite=8>
+    asdf <sprite=9> asdf <sprite=10> asdf <sprite=11> asdf <sprite=12> asdf <sprite=13>
+    asdf <sprite=14> asdf <sprite=15> asdf <sprite=16> asdf <sprite=17> asdf <sprite=18>
+    asdf <sprite=19> asdf <sprite=20> asdf <sprite=21> asdf <sprite=22> asdf <sprite=23>
+    asdf <sprite=24> asdf <sprite=25> asdf <sprite=26> asdf <sprite=27> asdf <sprite=28>
+    asdf <sprite=29> asdf <sprite=30> asdf <sprite=31> asdf <sprite=32> asdf '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac3ba2c19cf076d4b9817c49ad626002, type: 2}
   m_sharedMaterial: {fileID: 2778271914135062357, guid: ac3ba2c19cf076d4b9817c49ad626002,

@@ -1629,16 +1629,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8068689564034294410, guid: 207949f43530c8e488f61d0ca2d915ae,
-        type: 3}
-      propertyPath: m_text
-      value: "Lorem ipsum <sprite=0>dolor sit <sprite=3> amet, <sprite=2> adipiscing
-        elit. Maecenas <sprite=4> consectetur, <sprite=5> <b>urna</b> sed semper
-        <sprite=1> venenatis, est ipsum <sprite=13> viverra sapien, <i>et semper</i>
-        eros nunc in dui. Nulla vestibulum <sprite=14> mauris a laoreet.\n<sprite=8>
-        \xC9xito cr\xEDtico <sprite=8>\n<sprite=9> \xC9xito <sprite=9>\n<sprite=10>
-        Fallo <sprite=10>\n<sprite=12> Fallo cr\xEDtico <sprite=12>"
-      objectReference: {fileID: 0}
     - target: {fileID: 8075074791451889144, guid: 207949f43530c8e488f61d0ca2d915ae,
         type: 3}
       propertyPath: m_AnchorMax.y
