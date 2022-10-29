@@ -1,12 +1,12 @@
 # Vacío por dentro
 
-Categories: Conjuro
-Source: Empty inside
-Tags: Foco, Abjuración
-Level: Truco
+Categoría: Conjuro
+Fuente: Empty inside
+Etiquetas: Foco, Abjuración
+Nivel: Truco
 
 __Conjurar__ {1} verbal
 
 Introduces parte del vacío cósmico en tu mente, vaciándola de cualquier sentimiento. Puedes contrarrestar un efecto emocional que te esté afectando.
 ---
-{power-up} __(nivel 5)__ contraresta todos los efectos emocionales.
+{power_up} __(nivel 5)__ contraresta todos los efectos emocionales.

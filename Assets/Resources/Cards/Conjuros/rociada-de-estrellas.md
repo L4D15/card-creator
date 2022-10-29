@@ -1,9 +1,9 @@
 # Rociada de estrellas
 
-Categories: Conjuro
-Source: Spray of Stars
-Tags: Foco, Maldito, Evocación, Fuego, Luz, Oráculo
-Level: 1
+Categoría: Conjuro
+Fuente: Spray of Stars
+Etiquetas: Foco, Maldito, Evocación, Fuego, Luz, Oráculo
+Nivel: 1
 
 __Misterio__ cosmos
 __Conjurar__ {2} somático, verbal
@@ -14,4 +14,4 @@ Rociada de estrellas fugazes en un cono de 15 pies. Tiene que hacer Salvación d
 {miss} daño completo y **Deslumbrado** 3 rondas.
 {critical_miss}  daño x2 y **Deslumbrado** 1 minuto.
 ---
-{power-up}__(+1)__ daño +1d4.
+{power_up}__(+1)__ daño +1d4.

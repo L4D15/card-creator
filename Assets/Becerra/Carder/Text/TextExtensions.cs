@@ -158,7 +158,7 @@ namespace Becerra.Carder.Text
 
         private static string ApplyPowerUp(string text)
         {
-            return text.Replace("{power-up}", "<sprite=15>");
+            return text.Replace("{power_up}", "<sprite=15>");
         }
     }
 }

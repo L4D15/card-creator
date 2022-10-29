@@ -22,17 +22,19 @@ namespace Becerra.Carder
             CardModel model = new CardModel();
 
             string[] rawSections = text.Split('\n');
+            bool isMetadataFinished = false;
 
             for (int i = 0; i < rawSections.Length; i++)
             {
                 string sectionText = rawSections[i];
 
-                if (IsMetadata(sectionText))
+                if (isMetadataFinished == false && IsMetadata(sectionText))
                 {
                     ApplyMetadata(sectionText, model);
                 }
                 else
                 {
+                    isMetadataFinished = true;
                     var section = ParseSection(rawSections[i]);
 
                     if (section != null)
@@ -152,6 +154,8 @@ namespace Becerra.Carder
                 return true;
             }
 
+            if (split.Length > 1) return true;
+
             return false;
         }
 
@@ -168,36 +172,52 @@ namespace Becerra.Carder
                 string key = GetMetadataKey(text);
                 string value = GetMetadataValue(text);
 
+                if (string.IsNullOrEmpty(key)) return;
+                if (string.IsNullOrEmpty(value)) return;
+
                 switch (key)
                 {
-                    case "Categories":
+                    case "Categoría":
                     {
                         model.categories = GetValuesList(value);
                         break;
                     }
-                    case "Tags":
+                    case "Etiquetas":
                     {
                         model.tags = GetValuesList(value);
                         break;
                     }
-                    case "Front":
+                    case "Frontal":
                     {
                         model.frontImage = value;
                         break;
                     }
-                    case "Back":
+                    case "Trasera":
                     {
                         model.backImage = value;
                         break;
                     }
-                    case "Source":
+                    case "Fuente":
                     {
                         model.source = value;
                         break;
                     }
-                    case "Level":
+                    case "Nivel":
                     {
                         model.level = value;
+                        break;
+                    }
+                    default:
+                    {
+                        if (model.metadata.ContainsKey(key))
+                        {
+                            Debug.LogError($"Key {key} already present in generic metadata.");
+                        }
+                        else
+                        {
+                            model.metadata.Add(key, value);
+                        }
+
                         break;
                     }
                 }

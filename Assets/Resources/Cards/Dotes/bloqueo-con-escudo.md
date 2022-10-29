@@ -1,15 +1,14 @@
 # Bloqueo con escudo
 
-Front: Shield Block
-Source: Shield Block (Core Rulebook, 266)
-Categories: Dote general
-Tags: General
-Level: 1
+Frontal: Shield Block
+Fuente: Shield Block (Core Rulebook, 266)
+Categoría: Dote general
+Etiquetas: General
+Nivel: 1
 
 Obtienes la siguiente reacción:
 
 ## Bloquear con el escudo {R}
----
 __Requisito:__ Tienes el escudo levantado.
 __Disparador:__ Vas a recibir daño de un ataque.
 ---

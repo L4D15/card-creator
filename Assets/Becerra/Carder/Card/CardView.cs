@@ -1,6 +1,7 @@
 using Becerra.Carder.Card;
 using Becerra.Carder.Text;
 using Sirenix.OdinInspector;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -24,6 +25,12 @@ namespace Becerra.Carder
 
         [TabGroup("Categories")]
         public Image[] _colorableIcons;
+
+        [TabGroup("Metadata")]
+        public Transform metadataContainer;
+
+        [TabGroup("Metadata")]
+        public MetadataEntryView metadataEntryPrefab;
 
         public GameObject content;
 
@@ -61,6 +68,7 @@ namespace Becerra.Carder
         private Pool<CardSeparatorView> separatorSectionPool;
         private Pool<CardActionTitleView> actionTitleSectionPool;
         private Pool<CardListItemView> listItemPool;
+        private Pool<MetadataEntryView> metadataEntryPool;
         
         public CardModel Model { get; private set; }
         public int Width { get; private set; }
@@ -83,6 +91,7 @@ namespace Becerra.Carder
             separatorSectionPool = new Pool<CardSeparatorView>(separatorPrefab, sectionsContainer, 4);
             actionTitleSectionPool = new Pool<CardActionTitleView>(actionTitlePrefab, sectionsContainer, 2);
             listItemPool = new Pool<CardListItemView>(listItemPrefab, sectionsContainer, 10);
+            metadataEntryPool = new Pool<MetadataEntryView>(metadataEntryPrefab, metadataContainer, 4);
 
             _frontAspectRatio = frontImage.GetComponent<AspectRatioFitter>();
             _backAspectRatio = backImage.GetComponent<AspectRatioFitter>();
@@ -97,6 +106,7 @@ namespace Becerra.Carder
             separatorSectionPool.Dispose();
             actionTitleSectionPool.Dispose();
             listItemPool.Dispose();
+            metadataEntryPool.Dispose();
         }
         
         public void Show(CardModel model)
@@ -110,12 +120,32 @@ namespace Becerra.Carder
             ShowSource(model.source);
             ShowTags(model.tags);
             ShowSections(model.sections);
+            ShowMetadata(model.metadata);
 
             string frontImage = string.IsNullOrEmpty(model.frontImage) ? model.name : model.frontImage;
             string backImage = string.IsNullOrEmpty(model.backImage) ? frontImage : model.backImage;
             
             ShowFrontImage(frontImage);
             ShowBackImage(backImage);
+        }
+
+        private void ShowMetadata(Dictionary<string, string> metadata)
+        {
+            if (metadata == null || metadata.Count < 1)
+            {
+                metadataContainer.gameObject.SetActive(false);
+            }
+            else
+            {
+                metadataContainer.gameObject.SetActive(true);
+            }
+
+            foreach (var entry in metadata)
+            {
+                var entryView = metadataEntryPool.Spawn();
+
+                entryView.Show(entry.Key, entry.Value);
+            }
         }
 
         public void Hide()
@@ -134,6 +164,7 @@ namespace Becerra.Carder
             separatorSectionPool.Reset();
             actionTitleSectionPool.Reset();
             listItemPool.Reset();
+            metadataEntryPool.Reset();
         }
 
         private void ShowName(string name)
