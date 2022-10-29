@@ -28,6 +28,9 @@ namespace Becerra.Carder
             {
                 string sectionText = rawSections[i];
 
+                if (string.IsNullOrEmpty(sectionText)) continue;
+                if (sectionText == "\n") continue;
+
                 if (isMetadataFinished == false && IsMetadata(sectionText))
                 {
                     ApplyMetadata(sectionText, model);
@@ -35,7 +38,7 @@ namespace Becerra.Carder
                 else
                 {
                     isMetadataFinished = true;
-                    var section = ParseSection(rawSections[i]);
+                    var section = ParseSection(sectionText);
 
                     if (section != null)
                     {

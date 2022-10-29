@@ -74,7 +74,7 @@ public class Main : MonoBehaviour
                 foreach (var card in cards)
                 {
                     HideCard(cardView);
-                    ShowCard(card);
+                    await ShowCard(card);
 
                     var front = await captureService.CaptureCardFront(cardView);
                     var back = await captureService.CaptureCardBack(cardView);
@@ -159,13 +159,13 @@ public class Main : MonoBehaviour
         saveService.SaveTexture(back, folder);
     }
 
-    private void ShowCard(string cardText)
+    private async Task ShowCard(string cardText)
     {
         CardController card = new CardController(cardText);
         
         card.Parse(parser);
         
-        cardView.Show(card.model);
+        await cardView.Show(card.model);
     }
 
     private void HideCard(CardView cardView)

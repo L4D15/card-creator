@@ -229,6 +229,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1472110237}
     m_Modifications:
+    - target: {fileID: 516548358063707551, guid: 207949f43530c8e488f61d0ca2d915ae,
+        type: 3}
+      propertyPath: _imagesPath
+      value: C:\Users\thedr\iCloudDrive\Rol\Pathfinder 2E\Cartas\Imagenes
+      objectReference: {fileID: 0}
     - target: {fileID: 782397397859571330, guid: 207949f43530c8e488f61d0ca2d915ae,
         type: 3}
       propertyPath: m_SizeDelta.y

@@ -1,9 +1,11 @@
 using Becerra.Carder.Card;
+using Becerra.Carder.Provider;
 using Becerra.Carder.Text;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,8 +14,7 @@ namespace Becerra.Carder
 {
     public class CardView : MonoBehaviour
     {
-        //public const int WIDTH = 744;
-        //public const int HEIGHT = 1039;
+        [SerializeField] private string _imagesPath;
 
         public bool colorizeBold = false;
 
@@ -74,6 +75,7 @@ namespace Becerra.Carder
         private Pool<CardActionTitleView> actionTitleSectionPool;
         private Pool<CardListItemView> listItemPool;
         private Pool<MetadataEntryView> metadataEntryPool;
+        private SpriteProvider _spriteProvider;
         
         public CardModel Model { get; private set; }
         public int Width { get; private set; }
@@ -98,6 +100,7 @@ namespace Becerra.Carder
             listItemPool = new Pool<CardListItemView>(listItemPrefab, sectionsContainer, 10);
             metadataEntryPool = new Pool<MetadataEntryView>(metadataEntryPrefab, metadataContainer, 4);
 
+            _spriteProvider = new SpriteProvider();
             _frontAspectRatio = frontImage.GetComponent<AspectRatioFitter>();
             _backAspectRatio = backImage.GetComponent<AspectRatioFitter>();
         }
@@ -114,7 +117,7 @@ namespace Becerra.Carder
             metadataEntryPool.Dispose();
         }
         
-        public void Show(CardModel model)
+        public async Task Show(CardModel model)
         {
             Model = model;
             
@@ -131,8 +134,8 @@ namespace Becerra.Carder
             string frontImage = string.IsNullOrEmpty(model.frontImage) ? model.name : model.frontImage;
             string backImage = string.IsNullOrEmpty(model.backImage) ? frontImage : model.backImage;
             
-            ShowFrontImage(frontImage);
-            ShowBackImage(backImage);
+            //await ShowFrontImage(frontImage);
+            await ShowBackImage(backImage);
         }
 
         private void ShowActions(string actions)
@@ -252,16 +255,16 @@ namespace Becerra.Carder
             }
         }
 
-        private void ShowFrontImage(string imageName)
+        private async Task ShowFrontImage(string imageName)
         {
-            frontImage.sprite = LoadSprite(imageName);
+            frontImage.sprite = await LoadSprite(imageName);
 
             RefreshAspectRatio();
         }
 
-        private void ShowBackImage(string imageName)
+        private async Task ShowBackImage(string imageName)
         {
-            backImage.sprite = LoadSprite(imageName);
+            backImage.sprite = await LoadSprite(imageName);
 
             RefreshAspectRatio();
         }
@@ -301,16 +304,12 @@ namespace Becerra.Carder
 
         }
 
-        private Sprite LoadSprite(string imageName)
+        private async Task<Sprite> LoadSprite(string imageName)
         {
-            Sprite sprite = Resources.Load<Sprite>("Images/" + imageName);
+            string path = System.IO.Path.Combine(_imagesPath, $"{imageName}.png");
 
-            if (sprite == null)
-            {
-                //Debug.LogError("Image " + imageName + "not found in Resources/Images. Using the default one.");
-                return LoadSprite("DefaultImage");
-            }
-            
+            var sprite = await _spriteProvider.LoadSprite(path);
+
             return sprite;
         }
 
