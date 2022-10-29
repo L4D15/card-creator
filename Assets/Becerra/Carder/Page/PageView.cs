@@ -29,6 +29,7 @@ namespace Becerra.Carder.Page
 
         public IEnumerable<CardTextures> Cards => _cards;
         public bool IsFull => _cards.Count >= MAX_CARDS;
+        public bool IsEmpty => _cards.Count < 1;
         public int Index { get; }
 
         private readonly List<CardTextures> _cards;

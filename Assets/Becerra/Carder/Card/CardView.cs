@@ -295,7 +295,7 @@ namespace Becerra.Carder
 
             if (sprite == null)
             {
-                Debug.LogError("Image " + imageName + "not found in Resources/Images. Using the default one.");
+                //Debug.LogError("Image " + imageName + "not found in Resources/Images. Using the default one.");
                 return LoadSprite("DefaultImage");
             }
             
