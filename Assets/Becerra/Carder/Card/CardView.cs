@@ -31,6 +31,10 @@ namespace Becerra.Carder
 
         [TabGroup("Metadata")]
         public MetadataEntryView metadataEntryPrefab;
+        [TabGroup("Metadata")]
+        public GameObject actionsArea;
+        [TabGroup("Metadata")]
+        public TextMeshProUGUI actionsLabel;
 
         public GameObject content;
 
@@ -115,6 +119,7 @@ namespace Becerra.Carder
             
             ShowName(model.name);
             ShowLevel(model.level);
+            ShowActions(model.actions);
             ShowFrontCategories(model.categories);
             ShowBackCategories(model.categories);
             ShowSource(model.source);
@@ -127,6 +132,20 @@ namespace Becerra.Carder
             
             ShowFrontImage(frontImage);
             ShowBackImage(backImage);
+        }
+
+        private void ShowActions(string actions)
+        {
+            if (string.IsNullOrEmpty(actions))
+            {
+                actionsArea.gameObject.SetActive(false);
+            }
+            else
+            {
+                actionsArea.gameObject.SetActive(true);
+            }
+
+            actionsLabel.text = actions.ToRichText();
         }
 
         private void ShowMetadata(Dictionary<string, string> metadata)

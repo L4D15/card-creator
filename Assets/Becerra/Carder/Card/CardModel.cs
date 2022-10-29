@@ -16,6 +16,7 @@ namespace Becerra.Carder
         public string backImage;
         public string source;
         public string level;
+        public string actions;
 
         public Dictionary<string, string> metadata;
         
@@ -25,6 +26,7 @@ namespace Becerra.Carder
             this.categories = new List<string>();
             this.tags = new List<string>();
             this.level = string.Empty;
+            this.actions = string.Empty;
             this.metadata = new Dictionary<string, string>();
         }
     }

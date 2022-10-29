@@ -1,12 +1,13 @@
-# Proyectil telequinético
+# Proyectil Telequinético
 
-Categoría: Conjuro
 Fuente: Telekinetic Projectile
+Categoría: Conjuro
 Etiquetas: Ataque, Evocación
 Nivel: Truco
+Acciones: {2}
 
-__Conjurar__ {2} somático, verbal
-__Rango__ 30 pies; __Objetivos__ 1 criatura
+__Comp.__ {somatic}{verbal}
+__{range}__ 30 pies; __{target}__ 1 criatura
 ---
 Lanzar un objeto del entorno de no más de 1 de carga. Tirada de ataque de conjuros contra CA. El daño es 1d6 más el bonificador de tu característica de lanzamiento de conjuros. El tipo de daño según el tipo de objeto lanzado.
 ---

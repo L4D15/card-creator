@@ -28,13 +28,14 @@ namespace Becerra.Carder.Card
             {"saving", 6},
             {"target", 12},
             {"line", 13},
-            {"ranged", 21},
+            {"ranged", 20},
+            {"burst", 7},
             {"emanation", 21},
             {"range", 28},
             {"melee", 29},
             {"somatic", 14},
             {"verbal", 22},
-            {"material", 30}
+            {"material", 30},
         };
 
         public static string GetRichtextForIcon(string iconName)

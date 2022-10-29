@@ -140,20 +140,6 @@ namespace Becerra.Carder
             string[] split = text.Split(':');
 
             if (split.Length < 2) return false;
-
-            string key = split[0];
-
-            switch (key)
-            {
-                case "Source":
-                case "Front":
-                case "Back":
-                case "Categories":
-                case "Tags":
-                case "Level":
-                return true;
-            }
-
             if (split.Length > 1) return true;
 
             return false;
@@ -205,6 +191,11 @@ namespace Becerra.Carder
                     case "Nivel":
                     {
                         model.level = value;
+                        break;
+                    }
+                    case "Acciones":
+                    {
+                        model.actions = value;
                         break;
                     }
                     default:

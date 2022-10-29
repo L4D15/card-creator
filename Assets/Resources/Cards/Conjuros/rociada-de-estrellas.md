@@ -1,4 +1,4 @@
-# Rociada de estrellas
+# Rociada de Estrellas
 
 Categoría: Conjuro
 Fuente: Spray of Stars
