@@ -43,6 +43,7 @@ namespace Becerra.Carder
 
         public GameObject levelArea;
         public TextMeshProUGUI levelLabel;
+        public GameObject levelIndicator;
 
         public Image frontImage;
         public Image backImage;
@@ -203,6 +204,17 @@ namespace Becerra.Carder
             {
                 levelArea.SetActive(true);
                 levelLabel.text = level.ToString();
+
+                if (int.TryParse(level, out int levelValue))
+                {
+                    levelIndicator.gameObject.SetActive(true);
+                    levelLabel.fontSize = 52;
+                }
+                else
+                {
+                    levelIndicator.gameObject.SetActive(false);
+                    levelLabel.fontSize = 28;
+                }
             }
         }
 
