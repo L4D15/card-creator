@@ -28,13 +28,22 @@ namespace Becerra.Save
 
         public void SaveTexture(Texture2D texture, string folder)
         {
-            var bytes = texture.EncodeToPNG();
-            string folderPath = System.IO.Path.Combine(savePath, folder);
-            string path = folderPath + "/" + texture.name + ".png";
+            if (texture == null) return;
 
-            Debug.Log("Saving texture " + texture + " at " + path);
+            try
+            {
+                var bytes = texture.EncodeToPNG(); 
+                string folderPath = System.IO.Path.Combine(savePath, folder);
+                string path = folderPath + "/" + texture.name + ".png";
+
+                Debug.Log("Saving texture " + texture + " at " + path);
             
-            System.IO.File.WriteAllBytes(path, bytes);
+                System.IO.File.WriteAllBytes(path, bytes);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Failed to save texture {texture} to folder {folder}. Error:\n{e}");
+            }
         }
     }
 }

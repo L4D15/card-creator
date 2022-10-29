@@ -3,6 +3,7 @@ using Becerra.Carder.Capture;
 using Becerra.Carder.Page;
 using Becerra.Save;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -81,19 +82,19 @@ public class Main : MonoBehaviour
                     saveService.SaveTexture(front, folderName);
                     saveService.SaveTexture(back, folderName);
 
+                    AddToCurrentPage(front, back);
+
                     if (IsCurrentPageFull())
                     {
                         await SaveCurrentPage(folderName);
 
                         CreateNewPage();
                     }
-
-                    AddToCurrentPage(front, back);
                 }
             }
 
             // If page was not full, save as it is
-            if (IsCurrentPageFull() == false)
+            if (IsCurrentPageEmpty() == false && IsCurrentPageFull() == false)
             {
                 await SaveCurrentPage(folderName);
             }
@@ -108,6 +109,15 @@ public class Main : MonoBehaviour
         if (pages.Count < 1) return null;
 
         return pages[pages.Count - 1];
+    }
+
+    private bool IsCurrentPageEmpty()
+    {
+        var page = GetCurrentPage();
+
+        if (page == null) return true;
+
+        return page.IsEmpty;
     }
 
     private bool IsCurrentPageFull()
