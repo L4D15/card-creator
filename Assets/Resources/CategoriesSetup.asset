@@ -15,7 +15,7 @@ MonoBehaviour:
   _categories:
   - name: Conjuro
     icon: {fileID: 21300000, guid: 458f0430c064bf54bbfeb7b062062a9a, type: 3}
-    color: {r: 0.24296905, g: 0.30704626, b: 0.5660378, a: 1}
+    color: {r: 0.20038268, g: 0.37198865, b: 0.745283, a: 1}
     lighterColor: {r: 0.5608757, g: 0.6207877, b: 0.8679245, a: 1}
   - name: "Condici\xF3n"
     icon: {fileID: 21300000, guid: 269fb3a9b77b23c4b840af610123e94d, type: 3}
