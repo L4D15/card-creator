@@ -27,6 +27,9 @@ namespace Becerra.Carder
         [TabGroup("Categories")]
         public Image[] _colorableIcons;
 
+        [TabGroup("Categories")]
+        public Image[] _lighterColorableIcons;
+
         [TabGroup("Metadata")]
         public Transform metadataContainer;
 
@@ -230,7 +233,7 @@ namespace Becerra.Carder
                 var categoryView = frontCategoriesPool.Spawn();
 
                 categoryView.Show(category);
-                //categoryView.label.color = GetCategoryColor(category);
+                categoryView.label.color = GetCategoryLightColor(category);
 
                 ApplyCategoryVisuals(category);
             }
@@ -364,14 +367,16 @@ namespace Becerra.Carder
 
             if (setup == null) return;
 
-            var icon = setup.icon;
-            var color = setup.color;
-
-            _frontIcon.sprite = icon;
+            _frontIcon.sprite = setup.icon;
 
             foreach (var colorable in _colorableIcons)
             {
-                colorable.color = color;
+                colorable.color = setup.color;
+            }
+
+            foreach (var colorable in _lighterColorableIcons)
+            {
+                colorable.color = setup.lighterColor;
             }
         }
 
@@ -382,6 +387,15 @@ namespace Becerra.Carder
             if (setup == null) return Color.white;
 
             return setup.color;
+        }
+
+        private Color GetCategoryLightColor(string category)
+        {
+            var setup = _categoriesSettings.FindSetup(category);
+
+            if (setup == null) return Color.white;
+
+            return setup.lighterColor;
         }
 
         #endregion Categories

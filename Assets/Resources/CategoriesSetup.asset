@@ -15,16 +15,21 @@ MonoBehaviour:
   _categories:
   - name: Conjuro
     icon: {fileID: 21300000, guid: 458f0430c064bf54bbfeb7b062062a9a, type: 3}
-    color: {r: 0.16470589, g: 0.56078434, b: 0.7411765, a: 1}
+    color: {r: 0.24296905, g: 0.30704626, b: 0.5660378, a: 1}
+    lighterColor: {r: 0.5608757, g: 0.6207877, b: 0.8679245, a: 1}
   - name: "Condici\xF3n"
     icon: {fileID: 21300000, guid: 269fb3a9b77b23c4b840af610123e94d, type: 3}
     color: {r: 0.83921576, g: 0.3137255, b: 0.38823533, a: 1}
+    lighterColor: {r: 0.9245283, g: 0.72828406, b: 0.7561097, a: 1}
   - name: Objeto
     icon: {fileID: 21300000, guid: eac98663af34f234881ceaa8b5186771, type: 3}
-    color: {r: 0.7647059, g: 1, b: 0.40784314, a: 1}
+    color: {r: 0.67506784, g: 0.7830189, b: 0.29178533, a: 1}
+    lighterColor: {r: 0.91190803, g: 1, b: 0.7783019, a: 1}
   - name: Default
     icon: {fileID: 21300000, guid: cc1b7d8dfa6ca844d9006a9664cc6a6e, type: 3}
-    color: {r: 0.81960785, g: 0.827451, b: 0.81960785, a: 1}
+    color: {r: 0, g: 0, b: 0, a: 1}
+    lighterColor: {r: 1, g: 1, b: 1, a: 1}
   - name: Criatura
     icon: {fileID: 21300000, guid: 0a52651525a3f4b42bde1861f254f425, type: 3}
-    color: {r: 0.6431373, g: 0.03137255, b: 0.007843138, a: 1}
+    color: {r: 0.32941177, g: 0.2509804, b: 0.58431375, a: 1}
+    lighterColor: {r: 0.7058824, g: 0.6392157, b: 0.92549026, a: 1}
