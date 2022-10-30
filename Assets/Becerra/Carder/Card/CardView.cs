@@ -32,8 +32,10 @@ namespace Becerra.Carder
 
         [TabGroup("Metadata")]
         public MetadataEntryView metadataEntryPrefab;
+
         [TabGroup("Metadata")]
         public GameObject actionsArea;
+
         [TabGroup("Metadata")]
         public TextMeshProUGUI actionsLabel;
 
@@ -48,10 +50,10 @@ namespace Becerra.Carder
 
         public Image frontImage;
         public Image backImage;
-        
+
         public Transform frontCategoriesParent;
         public CardCategoryView frontCategoryPrefab;
-        
+
         public Transform backCategoriesParent;
         public CardCategoryView backCategoryPrefab;
         public RectTransform backIllustrationContainer;
@@ -76,20 +78,20 @@ namespace Becerra.Carder
         private Pool<CardListItemView> listItemPool;
         private Pool<MetadataEntryView> metadataEntryPool;
         private SpriteProvider _spriteProvider;
-        
+
         public CardModel Model { get; private set; }
         public int Width { get; private set; }
         public int Height { get; private set; }
 
         private AspectRatioFitter _frontAspectRatio;
         private AspectRatioFitter _backAspectRatio;
-        
+
         public void Initialize()
         {
             var rect = GetComponent<RectTransform>().rect;
 
-            this.Width = (int) (rect.width / 2);
-            this.Height = (int) rect.height;
+            this.Width = (int)(rect.width / 2);
+            this.Height = (int)rect.height;
 
             frontCategoriesPool = new Pool<CardCategoryView>(frontCategoryPrefab, frontCategoriesParent, 4);
             backCategoriesPool = new Pool<CardCategoryView>(backCategoryPrefab, backCategoriesParent, 4);
@@ -116,11 +118,11 @@ namespace Becerra.Carder
             listItemPool.Dispose();
             metadataEntryPool.Dispose();
         }
-        
+
         public async Task Show(CardModel model)
         {
             Model = model;
-            
+
             ShowName(model.name);
             ShowLevel(model.level);
             ShowActions(model.actions);
@@ -133,7 +135,7 @@ namespace Becerra.Carder
 
             string frontImage = string.IsNullOrEmpty(model.frontImage) ? model.name : model.frontImage;
             string backImage = string.IsNullOrEmpty(model.backImage) ? frontImage : model.backImage;
-            
+
             //await ShowFrontImage(frontImage);
             await ShowBackImage(backImage);
         }
@@ -174,12 +176,12 @@ namespace Becerra.Carder
         public void Hide()
         {
             Model = null;
-            
+
             frontNameLabel.text = string.Empty;
             backNameLabel.text = string.Empty;
             frontImage.sprite = null;
             backImage.sprite = null;
-            
+
             frontCategoriesPool.Reset();
             backCategoriesPool.Reset();
             tagsPool.Reset();
@@ -228,7 +230,7 @@ namespace Becerra.Carder
                 var categoryView = frontCategoriesPool.Spawn();
 
                 categoryView.Show(category);
-                categoryView.label.color = GetCategoryColor(category);
+                //categoryView.label.color = GetCategoryColor(category);
 
                 ApplyCategoryVisuals(category);
             }
@@ -250,7 +252,7 @@ namespace Becerra.Carder
             foreach (var tag in tags)
             {
                 var tagView = tagsPool.Spawn();
-                
+
                 tagView.Show(tag);
             }
         }
@@ -277,7 +279,7 @@ namespace Becerra.Carder
             if (aspectRatioFitter != null && backImage.sprite != null)
             {
                 float aspectRation = backImage.sprite.textureRect.width / backImage.sprite.textureRect.height;
-                
+
                 aspectRatioFitter.aspectRatio = aspectRation;
             }
 
@@ -286,10 +288,9 @@ namespace Becerra.Carder
             if (aspectRatioFitter != null && frontImage.sprite != null)
             {
                 float aspectRation = frontImage.sprite.textureRect.width / frontImage.sprite.textureRect.height;
-                
+
                 aspectRatioFitter.aspectRatio = aspectRation;
             }
-
         }
 
         private void ResizeBackIllustrationContainer()
@@ -301,7 +302,6 @@ namespace Becerra.Carder
             float illustrationHeight = fullHeight - contentHeight;
 
             backIllustrationContainer.sizeDelta = new Vector2(backIllustrationContainer.sizeDelta.x, illustrationHeight);
-
         }
 
         private async Task<Sprite> LoadSprite(string imageName)
@@ -329,7 +329,7 @@ namespace Becerra.Carder
                 if (section is CardSectionText textSection)
                 {
                     var view = textSectionPool.Spawn();
-                    
+
                     view.ShowText(textSection.BodyText);
 
                     if (colorizeBold)
@@ -384,6 +384,6 @@ namespace Becerra.Carder
             return setup.color;
         }
 
-        #endregion
+        #endregion Categories
     }
 }
