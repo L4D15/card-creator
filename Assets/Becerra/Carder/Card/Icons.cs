@@ -36,6 +36,11 @@ namespace Becerra.Carder.Card
             {"somatic", 14},
             {"verbal", 22},
             {"material", 30},
+            {"shield", 15},
+            {"heart", 23},
+            {"fly", 31},
+            {"inmune", 33},
+            {"resistance", 32},
         };
 
         public static string GetRichtextForIcon(string iconName)

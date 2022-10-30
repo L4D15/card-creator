@@ -25,3 +25,6 @@ MonoBehaviour:
   - name: Default
     icon: {fileID: 21300000, guid: cc1b7d8dfa6ca844d9006a9664cc6a6e, type: 3}
     color: {r: 0.81960785, g: 0.827451, b: 0.81960785, a: 1}
+  - name: Criatura
+    icon: {fileID: 21300000, guid: 0a52651525a3f4b42bde1861f254f425, type: 3}
+    color: {r: 0.6431373, g: 0.03137255, b: 0.007843138, a: 1}
